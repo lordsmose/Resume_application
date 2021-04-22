@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using static Resume_application.Models.Constants;
 
 namespace Resume_application
 {
@@ -24,6 +25,12 @@ namespace Resume_application
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddHttpClient();
+
+            services.AddHttpClient(DND_API, c =>
+            {
+                c.BaseAddress = new Uri("https://www.dnd5eapi.co/");
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,6 +49,7 @@ namespace Resume_application
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            
             app.UseRouting();
 
             app.UseAuthorization();
