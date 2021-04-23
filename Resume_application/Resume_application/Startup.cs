@@ -4,11 +4,12 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Resume_application.DndAPI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using static Resume_application.Models.Constants;
+using static Resume_application.Infrastructure.Constants;
 
 namespace Resume_application
 {
@@ -26,6 +27,7 @@ namespace Resume_application
         {
             services.AddControllersWithViews();
             services.AddHttpClient();
+            services.AddScoped<IDndAPISpellService, DndAPISpellService>();
 
             services.AddHttpClient(DND_API, c =>
             {
