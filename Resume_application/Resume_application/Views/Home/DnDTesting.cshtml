@@ -10,7 +10,16 @@
 <div class="flex-row">
     <form asp-controller="Home" asp-action="GetDnDSpell" method="get">
         <div class="flex-column">
-            <input type="text" name="spellName"/>
+            <label for="spell-name">Name Of Spell</label>
+        </div>
+        <div class="flex-column">
+            <input type="text" id="spell-name" name="spellName"/>
+        </div>
+        <div class="flex-column">
+            <label for="spell-level">Level of Spell</label>
+        </div>
+        <div class="flex-column">
+            <input type="number" name="spellLevel" />
         </div>
         <div class="flex-column">
             <input type="submit" value="submit" class="btn btn-primary"/>

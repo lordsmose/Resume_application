@@ -44,7 +44,7 @@ namespace Resume_application.Models
         public string Index { get; set; }
 
         [JsonProperty("level")]
-        public float Level { get; set; }
+        public float? Level { get; set; }
 
         [JsonProperty("material")]
         public string Material { get; set; }
@@ -56,7 +56,7 @@ namespace Resume_application.Models
         public string Range { get; set; }
 
         [JsonProperty("ritual")]
-        public bool Ritual { get; set; }
+        public bool? Ritual { get; set; }
 
         [JsonProperty("school")]
         public DndAbilityScoreSkillsModel School { get; set; }

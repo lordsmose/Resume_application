@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using static Resume_application.Infrastructure.Constants;
 using Resume_application.Models;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace Resume_application.DndAPI
 {
@@ -22,11 +24,22 @@ namespace Resume_application.DndAPI
             _clientFactory = clientFactory;
         }
 
-        public async Task<string> GetSpellByName(string spellName)
+        public async Task<string> GetSpellByName(DndSpellModel spellModel)
         {
             var spellClient = _clientFactory.CreateClient(DND_API);
 
-            var query = "query{  spells(filter: { name: \"" + spellName + "\" }){name}}";
+            var serializer = new JsonSerializer()
+            {
+                NullValueHandling = NullValueHandling.Ignore
+            };
+            var stringWriter = new StringWriter();
+            using (var writer = new JsonTextWriter(stringWriter))
+            {
+                writer.QuoteName = false;
+                serializer.Serialize(writer, spellModel);
+            }
+
+            var query = "query{  spells(filter:" + stringWriter.ToString() + "){name}}";
             var request = new HttpRequestMessage(HttpMethod.Get, "/graphql");
 
             request.Content = new StringContent(query, Encoding.UTF8, "application/json");

@@ -47,9 +47,14 @@ namespace Resume_application.Controllers
         }
 
         [HttpGet]
-        public async Task<string> GetDnDSpell(string spellName)
+        public async Task<string> GetDnDSpell(string spellName, float? spellLevel)
         {
-            var answer = await _dndAPISpellService.GetSpellByName(spellName);
+            var spellModel = new DndSpellModel()
+            {
+                Name = spellName,
+                Level = spellLevel
+            };
+            var answer = await _dndAPISpellService.GetSpellByName(spellModel);
 
             return answer;
         }
