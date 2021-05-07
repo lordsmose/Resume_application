@@ -32,6 +32,12 @@ namespace Resume_application
             services.AddHttpClient(DND_API, c =>
             {
                 c.BaseAddress = new Uri("https://www.dnd5eapi.co/");
+                c.DefaultRequestHeaders.Add("Accept", "application/json");
+                c.DefaultRequestHeaders.Add("Accept", "text/html");
+                c.DefaultRequestHeaders.Add("Connection", "keep-alive");
+                //c.DefaultRequestHeaders.Add("Content-Type", "application/json");
+                c.DefaultRequestHeaders.Add("DNT", "1");
+                c.DefaultRequestHeaders.Add("Accept-Encoding", "gzip, deflate, br");
             });
         }
 
@@ -50,7 +56,6 @@ namespace Resume_application
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             
             app.UseRouting();
 

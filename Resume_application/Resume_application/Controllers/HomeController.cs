@@ -49,7 +49,9 @@ namespace Resume_application.Controllers
         [HttpGet]
         public async Task<string> GetDnDSpell(string spellName)
         {
-            return await _dndAPISpellService.GetSpellByName(spellName);
+            var answer = await _dndAPISpellService.GetSpellByName(spellName);
+
+            return answer;
         }
     }
 }

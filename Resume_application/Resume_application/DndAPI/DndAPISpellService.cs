@@ -4,8 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using static Resume_application.Infrastructure.Constants;
+using Resume_application.Models;
 
 namespace Resume_application.DndAPI
 {
@@ -23,7 +25,13 @@ namespace Resume_application.DndAPI
         public async Task<string> GetSpellByName(string spellName)
         {
             var spellClient = _clientFactory.CreateClient(DND_API);
-            var DnDAPI = await spellClient.GetAsync("/api/spells/" + spellName + "/");
+
+            var query = "query{  spells(filter: { name: \"" + spellName + "\" }){name}}";
+            var request = new HttpRequestMessage(HttpMethod.Get, "/graphql");
+
+            request.Content = new StringContent(query, Encoding.UTF8, "application/json");
+            var DnDAPI = await spellClient.GetAsync("/graphql/?query=" + query);
+
             return await DnDAPI.Content.ReadAsStringAsync();
         }
     }

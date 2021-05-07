@@ -1,0 +1,10 @@
+{
+  spell(filter:{
+    name:""
+  }){
+    name
+    desc
+    index
+    level
+  }
+}
