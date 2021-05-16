@@ -148,7 +148,7 @@ namespace Resume_application.Models
 
         /// <summary>
         /// List of all the spell classes that can have access to this spell, mostly there if there is
-        /// only a few specific subclasses that have access to the spell
+        /// only a few specific subclasses that have access to the spell in a given class.
         /// </summary>
         [JsonProperty("subclasses")]
         public List<DndDatabaseLinkModel> Subclasses { get; set; }

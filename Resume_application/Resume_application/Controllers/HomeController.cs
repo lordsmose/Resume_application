@@ -47,12 +47,40 @@ namespace Resume_application.Controllers
         }
 
         [HttpGet]
-        public async Task<string> GetDnDSpell(string spellName, float? spellLevel)
+        public async Task<string> GetDnDSpell(string spellName, float? spellLevel, string spellClass, string spellRange, bool? spellConcertration, string spellDamageType)
         {
+            SpellDamageModel spellDamageTypeObject = null;
+            List<DndDatabaseLinkModel> spellClassList = null;
+            
+            if(spellClass != null)
+            {
+                var spellClassModel = new DndDatabaseLinkModel()
+                {
+                    Name = spellClass
+                };
+                spellClassList = new List<DndDatabaseLinkModel>();
+                spellClassList.Add(spellClassModel);
+            }
+
+            if(spellDamageType != null)
+            {
+                spellDamageTypeObject = new SpellDamageModel()
+                {
+                    damageType = new DndDatabaseLinkModel
+                    {
+                        Name = spellDamageType
+                    }
+                };
+            }
+
             var spellModel = new DndSpellModel()
             {
                 Name = spellName,
-                Level = spellLevel
+                Level = spellLevel,
+                Classes = spellClassList,
+                Range = spellRange,
+                Concentration = spellConcertration,
+                Damage = spellDamageTypeObject
             };
             var answer = await _dndAPISpellService.GetSpellByName(spellModel);
 

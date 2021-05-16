@@ -4,27 +4,104 @@
 
 <h1>DnD Api Tester</h1>
 
-<p>This is just a tester for the open dnd 5e api. I will iterate on this and hopefully start doing full queries on this.
-   For now, this just does a get call on the api to get a spell and returns it as Json object.</p>
+<a className="flex flex-row items-center"
+   href="https://github.com/bagelbits/5e-srd-api"
+   target="_blank"
+   rel="noopener noreferrer">
+    <img style="height:5rem; width:5rem;"
+         src="https://www.dnd5eapi.co/public/favicon.ico" />
+    <img src="https://img.shields.io/badge/Powered By-D&D 5e API-d81921?style=flat-square" />
+</a>
 
-<div class="flex-row">
-    <form asp-controller="Home" asp-action="GetDnDSpell" method="get">
-        <div class="flex-column">
+<p>
+    This is just a tester for the open dnd 5e api. I will iterate on this and hopefully start doing full queries on this.
+    For now, this just does a get call on the api to get a spell and returns it as Json object.
+</p>
+
+<form asp-controller="Home" asp-action="GetDnDSpell" method="get">
+    <div class="row">
+        <div class="col-3">
             <label for="spell-name">Name Of Spell</label>
+            <input type="text" id="spell-name" name="spellName" />
         </div>
-        <div class="flex-column">
-            <input type="text" id="spell-name" name="spellName"/>
-        </div>
-        <div class="flex-column">
+        <div class="col-3">
             <label for="spell-level">Level of Spell</label>
+            <input type="number" name="spellLevel" id="spell-level" />
         </div>
-        <div class="flex-column">
-            <input type="number" name="spellLevel" />
+        <div class="col-3">
+            <label for="spell-class">Class That Can Cast This Spell</label>
+            <select name="spellClass" id="spell-class">
+                <option value="">None</option>
+                <option value="Barbarian">Barbarian</option>
+                <option value="Bard">Bard</option>
+                <option value="Cleric">Cleric</option>
+                <option value="Druid">Druid</option>
+                <option value="Fighter">Fighter</option>
+                <option value="Monk">Monk</option>
+                <option value="Paladin">Paladin</option>
+                <option value="Ranger">Ranger</option>
+                <option value="Rouge">Rouge</option>
+                <option value="Sorcerer">Sorcerer</option>
+                <option value="Warlock">Warlock</option>
+                <option value="Wizard">Wizard</option>
+                <option value="Artificer">Artificer</option>
+            </select>
         </div>
-        <div class="flex-column">
-            <input type="submit" value="submit" class="btn btn-primary"/>
+        <div class="col-3">
+            <label for="spell-range">The Range of the Spell</label>
+            <select id="spell-range" name="spellRange">
+                <option value="">None</option>
+                <option value="100 feet">100 feet</option>
+                <option value="10 feet">10 feet</option>
+                <option value="120 feet">120 feet</option>
+                <option value="150 feet">150 feet</option>
+                <option value="1 mile">1 mile</option>
+                <option value="300 feet">300 feet</option>
+                <option value="30 feet">30 feet</option>
+                <option value="500 feet">500 feet</option>
+                <option value="500 miles">500 miles</option>
+                <option value="5 feet">5 feet</option>
+                <option value="60 feet">60 feet</option>
+                <option value="90 feet">90 feet</option>
+                <option value="Self">Self</option>
+                <option value="Sight">Sight</option>
+                <option value="Special">Special</option>
+                <option value="Touch">Touch</option>
+                <option value="Unlimited">Unlimited</option>
+            </select>
         </div>
-    </form>
-</div>
+    </div>
+    <div class="row">
+        <div class="col-3">
+            <label for="spell-concentration">Does the Spell Need Concentration</label>
+            <select id="spell-concertration" name="spellConcertration">
+                <option value="">None</option>
+                <option value="true">True</option>
+                <option value="false">False</option>
+            </select>
+        </div>
+        <div class="col-3">
+            <label for="spell-damage-type">Level of Spell</label>
+            <select id="spell-damage-type" name="spellDamageType">
+                <option value="">None</option>
+                <option value="Acid">Acid</option>
+                <option value="Bludgeoning">Bludgeoning</option>
+                <option value="Cold">Cold</option>
+                <option value="Fire">Fire</option>
+                <option value="Force">Force</option>
+                <option value="Lightning">Lightning</option>
+                <option value="Necrotic">Necrotic</option>
+                <option value="Piercing">Piercing</option>
+                <option value="Poison">Poison</option>
+                <option value="Psychic">Psychic</option>
+                <option value="Radiant">Radiant</option>
+                <option value="Slashing">Slashing</option>
+                <option value="Thunder">Thunder</option>
+            </select>
+        </div>
+    </div>
+    <button type="submit">Submit</button>
+</form>
+
 @{
 }
